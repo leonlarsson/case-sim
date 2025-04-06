@@ -6,6 +6,7 @@ import { and, count, desc, eq, inArray, sql } from "drizzle-orm";
 import db from "@/db";
 import { items, stats, unboxes } from "@/db/schema";
 import { getOrCreateUnboxerIdCookie } from "./cookies";
+import { captureException } from "@sentry/nextjs";
 
 /** Gets the 100 latest unboxes. */
 export const getFilteredUnboxes = async (
@@ -140,6 +141,7 @@ export const addUnbox = async (
     return insertedUnbox;
   } catch (error) {
     console.error("Error adding item:", error);
+    captureException(error);
     return false;
   }
 };

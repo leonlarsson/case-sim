@@ -17,6 +17,7 @@
     "db:seed": "npm run db:insert-cases && npm run db:insert-items"
   },
   "dependencies": {
+    "@sentry/nextjs": "^9.11.0",
     "@vercel/functions": "^1.4.2",
     "dexie": "^4.0.10",
     "dexie-react-hooks": "^1.1.7",

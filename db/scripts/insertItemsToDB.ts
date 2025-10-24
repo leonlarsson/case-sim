@@ -17,7 +17,7 @@ const skinSchema = z.object({
 async function insertSkins() {
   try {
     const res = await fetch(
-      "https://bymykel.github.io/CSGO-API/api/en/skins.json",
+      "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json",
     );
     const skinsData = await res.json();
 

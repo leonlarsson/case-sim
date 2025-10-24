@@ -14,7 +14,7 @@ const caseSchema = z.object({
 async function insertCases() {
   try {
     const res = await fetch(
-      "https://bymykel.github.io/CSGO-API/api/en/crates.json",
+      "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/crates.json",
     );
     const casesData = await res.json();
 

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-const maintenanceMode = false;
+import { maintenanceMode } from "./utils/config";
 
 export const middleware = (request: NextRequest) => {
   // Maintenance mode

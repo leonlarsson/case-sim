@@ -9,6 +9,7 @@ import { UnlockButton } from "@/components/UnlockButton";
 import { Button } from "@/components/Button";
 import { APICase, CasePickerCase } from "@/types";
 import { CaseItems } from "@/components/CaseItems";
+import { defaultCaseId, featuredCaseIds } from "@/utils/config";
 
 // Just get the metadata for the cases
 // Used in the CasePicker component and for the page title
@@ -24,7 +25,7 @@ const casesMetadata: CasePickerCase[] = [
   first_sale_date: x.first_sale_date,
 }));
 
-const defaultCaseId = "crate-7007";
+const featuredCases = casesMetadata.filter(x => featuredCaseIds.includes(x.id));
 
 type PageProps = {
   searchParams: { case?: string };
@@ -44,34 +45,42 @@ export default async function Home({ searchParams }: PageProps) {
   const { case: selectedCaseParam } = searchParams;
 
   const casesData: APICase[] = [
-    // ...cases,
     ...casesLocal,
     ...extraCasesLocal,
     ...souvenirCasesLocal,
-    // ...souvenirPackages,
   ];
 
   const selectedCase =
-    casesData.find(x => x.id === (selectedCaseParam ?? defaultCaseId)) ??
-    casesData[0];
+    casesData.find(
+      x =>
+        x.id === (selectedCaseParam ?? defaultCaseId ?? featuredCases[0]?.id),
+    ) ?? casesData[0];
 
   return (
     <main id="main" className="relative flex min-h-screen select-none flex-col">
-      {/* Notice message */}
-      {selectedCase.id !== defaultCaseId && (
-        <Button
-          variant="secondary-darker"
-          href={`/?case=${defaultCaseId}`}
-          className="mx-2 mt-1 flex w-fit items-center gap-2 py-1 backdrop-blur-md"
-        >
-          Try the new Fever Case
-          <Image
-            src="https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_35_png.png"
-            alt="Fever Case"
-            width={256 / 7}
-            height={198 / 7}
-          />
-        </Button>
+      {/* Featured case notice */}
+      {featuredCases.filter(x => x.id !== selectedCase.id).length > 0 && (
+        <div className="mx-2 mt-1 flex flex-wrap gap-x-4 gap-y-2">
+          {featuredCases
+            .filter(x => x.id !== selectedCase.id)
+            .map(featuredCase => (
+              <Button
+                key={featuredCase.id}
+                variant="secondary-darker"
+                href={`/?case=${featuredCase.id}`}
+                className="flex w-fit items-center gap-2 py-1 backdrop-blur-md"
+              >
+                Try the new {featuredCase.name}
+                <Image
+                  src={featuredCase.image}
+                  alt={`${featuredCase.name} image`}
+                  draggable={false}
+                  width={256 / 7}
+                  height={198 / 7}
+                />
+              </Button>
+            ))}
+        </div>
       )}
 
       {/* Header row */}

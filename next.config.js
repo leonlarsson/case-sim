@@ -8,6 +8,9 @@ export default {
         hostname: "steamcommunity-a.akamaihd.net",
       },
       {
+        hostname: "community.akamai.steamstatic.com",
+      },
+      {
         hostname: "steamcdn-a.akamaihd.net",
       },
       {

@@ -6,8 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./Button";
 import { Icons } from "./icons";
 import { CasePickerCase } from "@/types";
-
-const defaultCaseId = "crate-7007";
+import { defaultCaseId, featuredCaseIds } from "@/utils/config";
 
 export const CasePicker = ({
   availableCases,
@@ -22,9 +21,9 @@ export const CasePicker = ({
   const caseParam = useSearchParams().get("case");
   const { buttonClickAlternativeSound, caseSelectSound } = useAudio();
 
-  const featuredCases: CasePickerCase[] = [
-    availableCases.find(x => x.id === defaultCaseId)!,
-  ];
+  const featuredCases = availableCases.filter(x =>
+    featuredCaseIds.includes(x.id),
+  );
 
   // Select the case based on the URL parameter
   // If the case is not found, select the default case, but fall back to index 0

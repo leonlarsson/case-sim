@@ -1,3 +1,8 @@
+> [!NOTE]
+> This project, including any future major code changes and the original domain, has been transferred to new owners.
+>
+> The current repository is now at https://case-sim.leonlarsson.com/
+
 # Counter-Strike Case Simulator
 
 A toy project to simulate opening cases in Counter-Strike. Built with Next.js, Tailwind, PostgreSQL, Drizzle ORM, and TypeScript.

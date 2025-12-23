@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import localFont from "next/font/local";
 import { BackgroundImage } from "@/components/BackgroundImage";
 import { AudioProvider } from "@/components/AudioProvider";
@@ -60,11 +59,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6039769769260317"
-        crossOrigin="anonymous"
-      />
       <body className={`${stratumFont.className} text-white`}>
         <BackgroundImage />
         <AudioProvider>{children}</AudioProvider>

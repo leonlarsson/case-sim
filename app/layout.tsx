@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import localFont from "next/font/local";
 import { BackgroundImage } from "@/components/BackgroundImage";
 import { AudioProvider } from "@/components/AudioProvider";
@@ -28,20 +27,28 @@ const stratumFont = localFont({
 export const metadata: Metadata = {
   title: "Counter-Strike Case Simulator",
   description: "Open all the Counter-Strike cases you want for free!",
-  metadataBase: new URL("https://case-sim.com"),
-  keywords: [
-    "counter-strike",
-    "csgo",
-    "cs:go",
-    "cs2",
-    "case",
-    "simulator",
-    "opening",
-    "sim",
-    "case opening",
-  ],
+  metadataBase: new URL("https://case-sim.leonlarsson.com"),
+  // keywords: [
+  //   "counter-strike",
+  //   "csgo",
+  //   "cs:go",
+  //   "cs2",
+  //   "case",
+  //   "simulator",
+  //   "opening",
+  //   "sim",
+  //   "case opening",
+  // ],
   openGraph: {
-    url: "https://case-sim.com",
+    url: "https://case-sim.leonlarsson.com",
+  },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
   },
 };
 
@@ -52,11 +59,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6039769769260317"
-        crossOrigin="anonymous"
-      />
       <body className={`${stratumFont.className} text-white`}>
         <BackgroundImage />
         <AudioProvider>{children}</AudioProvider>

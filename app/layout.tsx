@@ -28,20 +28,28 @@ const stratumFont = localFont({
 export const metadata: Metadata = {
   title: "Counter-Strike Case Simulator",
   description: "Open all the Counter-Strike cases you want for free!",
-  metadataBase: new URL("https://case-sim.com"),
-  keywords: [
-    "counter-strike",
-    "csgo",
-    "cs:go",
-    "cs2",
-    "case",
-    "simulator",
-    "opening",
-    "sim",
-    "case opening",
-  ],
+  metadataBase: new URL("https://case-sim.leonlarsson.com"),
+  // keywords: [
+  //   "counter-strike",
+  //   "csgo",
+  //   "cs:go",
+  //   "cs2",
+  //   "case",
+  //   "simulator",
+  //   "opening",
+  //   "sim",
+  //   "case opening",
+  // ],
   openGraph: {
-    url: "https://case-sim.com",
+    url: "https://case-sim.leonlarsson.com",
+  },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
   },
 };
 

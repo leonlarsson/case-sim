@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "./Button";
 import gradeColors from "@/utils/gradeColors";
 import { Icons } from "./icons";
@@ -25,15 +24,6 @@ export default ({
     unbox?.case.type === "Souvenir"
       ? `Souvenir ${unbox?.item.name}`
       : statTrakifyName(unbox?.item.name ?? "", unbox?.isStatTrak ?? false);
-
-  const itemShareUrl = new URL("https://twitter.com/intent/tweet");
-  itemShareUrl.searchParams.set(
-    "text",
-    `I unboxed a ${fullItemName}${
-      unbox?.item.phase ? ` (${unbox?.item.phase})` : ""
-    } in the Counter-Strike Case Simulator!\n\nTry here:`,
-  );
-  itemShareUrl.searchParams.set("url", "case-sim.com");
 
   const steamMarketUrl = new URL(
     "https://steamcommunity.com/market/search?appid=730",
@@ -63,14 +53,8 @@ export default ({
                   : gradeColors[unbox?.item.rarity as ItemGrade],
               }}
             >
-              <Link
-                href={itemShareUrl}
-                target="_blank"
-                title="Share this pull on X / Twitter!"
-              >
-                {fullItemName}{" "}
-                {unbox?.item.phase ? ` (${unbox?.item.phase})` : ""}
-              </Link>
+              {fullItemName}{" "}
+              {unbox?.item.phase ? ` (${unbox?.item.phase})` : ""}
             </span>
           </span>
         </div>
